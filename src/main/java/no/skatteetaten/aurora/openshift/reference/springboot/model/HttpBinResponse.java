@@ -2,7 +2,7 @@ package no.skatteetaten.aurora.openshift.reference.springboot.model;
 
 import java.util.Map;
 
-public class GetResponse {
+public class HttpBinResponse {
 
     private Map<String, Object> args;
     private Map<String, Object> headers;

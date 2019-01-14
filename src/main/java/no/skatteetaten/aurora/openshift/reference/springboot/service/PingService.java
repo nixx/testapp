@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import no.skatteetaten.aurora.openshift.reference.springboot.model.GetResponse;
+import no.skatteetaten.aurora.openshift.reference.springboot.model.HttpBinResponse;
 
 @Service
 public class PingService {
@@ -21,15 +21,23 @@ public class PingService {
     }
 
     public String getOrigin() {
-        ResponseEntity<GetResponse> resp = restTemplate.getForEntity("/get", GetResponse.class);
-        GetResponse g = Objects.requireNonNull(resp.getBody());
+        ResponseEntity<HttpBinResponse> resp = restTemplate.getForEntity("/get", HttpBinResponse.class);
+        HttpBinResponse g = Objects.requireNonNull(resp.getBody());
         logger.info("Headers: {}", g.getHeaders());
         return g.getOrigin();
     }
 
+    public String postOrigin() {
+        ResponseEntity<HttpBinResponse> resp = restTemplate.postForEntity("/post", null, HttpBinResponse.class);
+        HttpBinResponse g = Objects.requireNonNull(resp.getBody());
+        logger.info("Headers: {}", g.getHeaders());
+        return g.getOrigin();
+    }
+
+
     public String getOrigin2() {
-        ResponseEntity<GetResponse> resp = restTemplate.getForEntity("http://httpbin.org/get", GetResponse.class);
-        GetResponse g = Objects.requireNonNull(resp.getBody());
+        ResponseEntity<HttpBinResponse> resp = restTemplate.getForEntity("http://httpbin.org/get", HttpBinResponse.class);
+        HttpBinResponse g = Objects.requireNonNull(resp.getBody());
         logger.info("Headers: {}", g.getHeaders());
         return g.getOrigin();
     }

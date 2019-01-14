@@ -23,6 +23,6 @@ public class PingController {
 
     @GetMapping("/api/ping2")
     public String counter2() {
-        return pingService.getOrigin2();
+        return pingService.postOrigin();
     }
 }
