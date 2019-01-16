@@ -33,12 +33,4 @@ public class PingService {
         logger.info("Headers: {}", g.getHeaders());
         return g.getOrigin();
     }
-
-
-    public String getOrigin2() {
-        ResponseEntity<HttpBinResponse> resp = restTemplate.getForEntity("http://httpbin.org/get", HttpBinResponse.class);
-        HttpBinResponse g = Objects.requireNonNull(resp.getBody());
-        logger.info("Headers: {}", g.getHeaders());
-        return g.getOrigin();
-    }
 }
